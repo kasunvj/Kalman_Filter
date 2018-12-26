@@ -29,24 +29,40 @@ Xk = np.array([(0),(0)])
 ACC = 0
 
 #X(K+1)
-def Get_X_at_K_plus_1(x, acc):
-    return np.add(np.dot(A,x),np.dot(B,acc))
-#Xk1= Get_X_at_K_plus_1(Xk,ACC)
-
-#matrix_initialization
-Xk1_est = np.array([(0),(0)])
-
-#State Extapolation
-Xk1_est_cal = np.dot(A,Xk1_est)
+def Xkplus1(x, acc):
+    return np.dot(A,x)+np.dot(B,acc)
 
 
+L = []
+a= np.array([(2),(3)])
+b= np.array([(24),(33)])
+L.append(a)
+L.append(a)
+L.append(b)
+L.append(b)
+
+M = []
+a= np.array([(0,0),(0,0)])
+b= np.array([(1,2),(3,5)])
+M.append(a)
+M.append(b)
+M.append(a)
+M.append(b)
 
 #testing outputs
-Chal = Xk1_est_cal
+Chal = L
 print(Chal)
+print(Chal[2])
 print(np.shape(Chal))
-print(np.shape(Chal))
+print(np.shape(Chal[2]))
 
+Chal = M
+print(Chal)
+print(Chal[1])
+print(np.shape(Chal))
+print(np.shape(Chal[2]))
+
+print(np.sqrt(b))
 
 
 
