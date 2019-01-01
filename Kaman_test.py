@@ -55,19 +55,29 @@ R = Covariance(Var_V)
 X_hat = np.array([[0],[0]])
 P = np.array([[0],[0]])
 
-#State Exploitation
-X_hat_working = np.dot(A,X_hat)
+for i in range(1,10):
+    #State Exploitation
+    X_hat_working = np.dot(A,X_hat)
 
-#Covariance Calculation
-Error = X_hat - Xkplus1(X_hat,0) #------------------------------- Check this is right
-P = np.dot(Error,np.transpose(Error))
-P_working = np.dot(A, np.dot(P,np.transpose(A))) + Q
+    #Covariance Calculation
+    Error = X_hat - Xkplus1(X_hat,0) #------------------------------- Check this is right
+    P = np.dot(Error,np.transpose(Error))
+    P_working = np.dot(A, np.dot(P,np.transpose(A))) + Q
 
-#Kalman Gain
-K_bar =np.dot(H,np.dot(P_working,np.transpose(H))) + R
-K = np.dot(np.transpose(P_working), np.transpose(H))/K_bar
+    #Kalman Gain
+    K_bar =np.dot(H,np.dot(P_working,np.transpose(H))) + R
+    K = np.dot(np.transpose(P_working), np.transpose(H))/K_bar
+
+    #State Update
+    with open ('Position_Gyro_Readings.csv') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        print(csv_reader[i])
 
 
+
+    file.close()
+
+    #X_hat = X_hat_working +
 
 Chal =K
 print(Chal)
